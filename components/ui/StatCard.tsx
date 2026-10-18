@@ -8,7 +8,7 @@ interface StatCardProps {
   icon?: React.ReactNode
   badge?: React.ReactNode
   /** Color accent for the left border */
-  accent?: 'green' | 'yellow' | 'blue' | 'orange' | 'gray'
+  accent?: 'green' | 'yellow' | 'blue' | 'orange' | 'red' | 'gray'
   isDemoData?: boolean
   className?: string
 }
@@ -18,6 +18,7 @@ const accentMap: Record<string, string> = {
   yellow: 'border-l-[#FFCC00]',
   blue:   'border-l-[#A1DAEF]',
   orange: 'border-l-orange-400',
+  red:    'border-l-red-500',
   gray:   'border-l-[#D9D9D9]',
 }
 

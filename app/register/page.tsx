@@ -19,7 +19,7 @@ const schema = z
     password: z.string().min(6, 'Kata sandi minimal 6 karakter'),
     confirmPassword: z.string().min(1, 'Konfirmasi kata sandi wajib diisi'),
     agreeTerms: z.literal(true, {
-      errorMap: () => ({ message: 'Anda harus menyetujui syarat & ketentuan' }),
+      error: 'Anda harus menyetujui syarat & ketentuan',
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {

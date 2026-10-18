@@ -47,14 +47,24 @@ export default function AnalyticsPage() {
     async function loadTelemetry() {
       setLoading(true)
       try {
+        const to = new Date()
+        const days = timeRange === '24h' ? 1 : timeRange === '7d' ? 7 : 30
+        const from = new Date(to.getTime() - days * 24 * 60 * 60 * 1000)
+        const dateRange = {
+          from: from.toISOString(),
+          to: to.toISOString(),
+        }
+
         const [historyRes, summaryRes] = await Promise.all([
           telemetryService.getReadingHistory({
             deviceId: selectedDeviceId,
             sensorType: selectedSensor,
+            ...dateRange,
           }),
           analyticsService.getSensorSummaries({
             deviceId: selectedDeviceId,
             sensorTypes: ['soil_moisture', 'water_level', 'temperature', 'humidity'],
+            ...dateRange,
           }),
         ])
 
